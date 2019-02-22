@@ -6,8 +6,19 @@ production systems. APIs and file formats may change at any time without
 preserving backwards compatibility. All known issues and limitations
 are logged as GitHub issues.*
 
+
 Overview
 --------
+This fork tests pmemkv for crash-consistency. A sample test case is `kvtree-test.c`, which puts a value in the kvtree engine and checks if the recovery is correct, using pmreorder. To run this test file,
+	1. ./rebuild.sh (will build pmemkv and install it)
+	2. make mytests
+	3. ./TEST1.sh ReorderAccumulative 2>&1 | tee out.log
+  
+* The log file from pmreorder will be stored at pmreorder.log (This file is opened in append mode. So clear it after each run if required)
+* I have enabled some logging in pmreorder to track which set of store instructions are being replayed. You could patch these from [here](https://github.com/jayashreemohan29/pmdk-test/commit/87d77a752ad60e6be2fdf88725d07195c8c79ed9)
+* Also, compile libpmemobj-c++ with the extra flag LIBPMEMOBJ\_CPP\_VG\_ENABLED=1 (to enable valgrind tracing)
+
+---------
 
 `pmemkv` is a local/embedded key-value datastore optimized for persistent memory.
 Rather than being tied to a single language or backing implementation, `pmemkv`

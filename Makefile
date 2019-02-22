@@ -1,6 +1,6 @@
 prefix=/usr/local
 
-all: clean test
+all: mytest
 
 reset:
 	rm -rf /dev/shm/pmemkv /tmp/pmemkv
@@ -26,5 +26,7 @@ uninstall:
 
 test: configure reset
 	cd ./bin && make pmemkv_test
-	PMEM_IS_PMEM_FORCE=1 ./bin/pmemkv_test
-	rm -rf /dev/shm/pmemkv /tmp/pmemkv
+	#PMEM_IS_PMEM_FORCE=1 ./bin/pmemkv_test
+	#rm -rf /dev/shm/pmemkv /tmp/pmemkv
+mytest:
+	gcc kvtree-test.c bin/libpmemkv.so -o kvtree

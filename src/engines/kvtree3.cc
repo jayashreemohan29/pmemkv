@@ -38,7 +38,7 @@
 #include <unistd.h>
 #include "kvtree3.h"
 
-#define DO_LOG 0
+#define DO_LOG 1
 #define LOG(msg) if (DO_LOG) std::cout << "[kvtree3] " << msg << "\n"
 
 namespace pmemkv {
