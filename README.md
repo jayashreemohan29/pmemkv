@@ -10,9 +10,10 @@ are logged as GitHub issues.*
 Overview
 --------
 This fork tests pmemkv for crash-consistency. A sample test case is `kvtree-test.c`, which puts a value in the kvtree engine and checks if the recovery is correct, using pmreorder. To run this test file,
-	1. ./rebuild.sh (will build pmemkv and install it)
-	2. make mytests
-	3. ./TEST1.sh ReorderAccumulative 2>&1 | tee out.log
+<ol>
+<li> ./rebuild.sh (will build pmemkv and install it)</li>
+<li> make mytests </li>
+<li> ./TEST1.sh ReorderAccumulative 2>&1 | tee out.log </li>
   
 * The log file from pmreorder will be stored at pmreorder.log (This file is opened in append mode. So clear it after each run if required)
 * I have enabled some logging in pmreorder to track which set of store instructions are being replayed. You could patch these from [here](https://github.com/jayashreemohan29/pmdk-test/commit/87d77a752ad60e6be2fdf88725d07195c8c79ed9)
